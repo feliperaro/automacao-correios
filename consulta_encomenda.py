@@ -26,12 +26,12 @@ def consulta_encomenda(*, driver, objeto_rastreio: str):
     ]
 
     url = gvars.URL_CORREIOS + objeto_rastreio
-    log(f"opening url: {url}")
+    log(f"url: {url}")
     driver.get(url=url)
 
     output = {"status": None, "code": objeto_rastreio, "data": {}}
     for script in scripts:
-        log(f"running script: {script}")
+        log(f"script: {script}")
 
         return_script = chromedriver.wait_execute_script(driver=driver, script=script["script"])
         log(f"return_script: {return_script}")
@@ -93,9 +93,9 @@ def test_consulta_encomenda():
         log("testing for...", case["test_case_name"])
         chrome = chromedriver.open_chrome()
         result = consulta_encomenda(driver=chrome, objeto_rastreio=case["objeto_rastreio"])
-        log("result: ", result)
+        log(f"result: {result}")
         expected_result = case["expected_result"]
-        log("expected_result: ", expected_result)
+        log(f"expected_result: {expected_result}")
         assert result == expected_result
         log("consulta_encomenda(): success!")
 
@@ -116,5 +116,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         log("stopping by keyboard interrupt")
     except Exception as error:
-        log("error:", error)
+        log(f"error: {error}")
         
