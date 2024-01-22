@@ -110,9 +110,9 @@ if __name__ == "__main__":
                 log("Usage: python consulta_encomenda.py codigo_encomenda")
                 sys.exit()
 
-            codigo_rastreio = args[1]
+            codigo_encomenda = args[1]
             driver_chrome = chromedriver.open_chrome()
-            consulta_encomenda(driver=driver_chrome, objeto_rastreio=codigo_rastreio)
+            consulta_encomenda(driver=driver_chrome, objeto_rastreio=codigo_encomenda)
     except KeyboardInterrupt:
         log("stopping by keyboard interrupt")
     except Exception as error:
